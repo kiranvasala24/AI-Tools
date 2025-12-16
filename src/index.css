@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 20% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 20% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 220 20% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 20% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 220 20% 4%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    /* Tool accent colors */
+    --tool-job: 199 89% 48%;
+    --tool-habit: 142 71% 45%;
+    --tool-ats: 271 91% 65%;
+    --tool-support: 25 95% 53%;
+    --tool-knowledge: 231 91% 65%;
+
+    /* Gradients */
+    --gradient-job: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(220 91% 55%) 100%);
+    --gradient-habit: linear-gradient(135deg, hsl(142 71% 45%) 0%, hsl(166 72% 40%) 100%);
+    --gradient-ats: linear-gradient(135deg, hsl(271 91% 65%) 0%, hsl(291 91% 55%) 100%);
+    --gradient-support: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(15 95% 50%) 100%);
+    --gradient-knowledge: linear-gradient(135deg, hsl(231 91% 65%) 0%, hsl(251 91% 60%) 100%);
+
+    /* Glass effect */
+    --glass-bg: hsla(220, 20%, 10%, 0.7);
+    --glass-border: hsla(220, 20%, 25%, 0.5);
+
+    /* Shadows */
+    --shadow-glow-primary: 0 0 60px hsla(199, 89%, 48%, 0.3);
+    --shadow-card: 0 4px 24px hsla(0, 0%, 0%, 0.4);
+  }
+
+  .dark {
+    --background: 220 20% 4%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--tool-knowledge)) 100%);
+  }
+
+  .tool-card {
+    @apply relative overflow-hidden rounded-2xl border border-border/30 bg-card/50 backdrop-blur-sm p-6 transition-all duration-500;
+  }
+
+  .tool-card:hover {
+    @apply border-border/60 bg-card/80;
+    transform: translateY(-4px);
+  }
+
+  .tool-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+  }
+
+  .tool-card:hover::before {
+    @apply opacity-10;
+  }
+
+  .btn-tool {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300;
+  }
+
+  .textarea-field {
+    @apply w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
