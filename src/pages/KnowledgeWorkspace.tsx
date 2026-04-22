@@ -51,7 +51,7 @@ export default function KnowledgeWorkspace() {
 
       if (error) throw error;
       setDocuments(data || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error loading documents:', error);
       toast({
         title: 'Error',
@@ -105,11 +105,11 @@ export default function KnowledgeWorkspace() {
         response: data.answer,
         citations: data.citations,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Query error:', error);
       toast({
         title: 'Query Failed',
-        description: error.message || 'Failed to process your query.',
+        description: (error as Error).message || 'Failed to process your query.',
         variant: 'destructive',
       });
     } finally {
@@ -166,7 +166,7 @@ export default function KnowledgeWorkspace() {
         title: 'Document Added',
         description: 'Your document has been added to the knowledge base.',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error adding document:', error);
       toast({
         title: 'Error',
@@ -192,7 +192,7 @@ export default function KnowledgeWorkspace() {
         title: 'Document Deleted',
         description: 'The document has been removed from your knowledge base.',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting document:', error);
       toast({
         title: 'Error',

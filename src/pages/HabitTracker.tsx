@@ -107,7 +107,7 @@ export default function HabitTracker() {
         setInsights(data.insights);
         toast({ title: 'Insights Updated', description: 'Fresh AI insights are ready!' });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching insights:', error);
       toast({ title: 'Error', description: 'Could not fetch insights', variant: 'destructive' });
     } finally {

@@ -38,8 +38,8 @@ export default function ATSOptimizer() {
 
       setResult(data);
       toast({ title: 'Analysis Complete', description: `Your ATS score is ${data.score}%` });
-    } catch (error: any) {
-      toast({ title: 'Analysis Failed', description: error.message, variant: 'destructive' });
+    } catch (error: unknown) {
+      toast({ title: 'Analysis Failed', description: (error as Error).message, variant: 'destructive' });
     } finally {
       setIsAnalyzing(false);
     }

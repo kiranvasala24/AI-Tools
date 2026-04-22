@@ -56,11 +56,11 @@ export default function JobAssistant() {
         title: 'Generation Complete',
         description: 'Your tailored application materials are ready!',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Generation error:', error);
       toast({
         title: 'Generation Failed',
-        description: error.message || 'Something went wrong. Please try again.',
+        description: (error as Error).message || 'Something went wrong. Please try again.',
         variant: 'destructive',
       });
     } finally {

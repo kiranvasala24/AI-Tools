@@ -19,7 +19,7 @@ serve(async (req) => {
     }
 
     const docsContext = documents?.length 
-      ? documents.map((doc: any, idx: number) => `[${idx + 1}] ${doc.title}:\n${doc.content}`).join('\n\n')
+      ? documents.map((doc: { title: string; content: string }, idx: number) => `[${idx + 1}] ${doc.title}:\n${doc.content}`).join('\n\n')
       : 'No documents available.';
 
     const systemPrompt = `You are a knowledge assistant. Answer questions based on the provided documents.

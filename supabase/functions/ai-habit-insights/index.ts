@@ -35,8 +35,8 @@ Provide 2-4 specific insights in JSON format:
   "needsAttention": "habit name or null"
 }`;
 
-    const habitsInfo = habits.map((h: any) => `- ${h.name} (${h.frequency})`).join('\n');
-    const logsInfo = logs.map((l: any) => 
+    const habitsInfo = habits.map((h: { name: string; frequency: string }) => `- ${h.name} (${h.frequency})`).join('\n');
+    const logsInfo = logs.map((l: { habit_name: string; logged_at: string; completed: boolean; notes: string }) => 
       `${l.habit_name} on ${l.logged_at}: ${l.completed ? '✓ Completed' : '✗ Missed'}${l.notes ? ` - "${l.notes}"` : ''}`
     ).join('\n');
 

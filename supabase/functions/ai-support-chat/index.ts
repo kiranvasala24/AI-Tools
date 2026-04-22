@@ -19,7 +19,7 @@ serve(async (req) => {
     }
 
     const kbContext = knowledgeBase?.length 
-      ? `\nKnowledge Base:\n${knowledgeBase.map((kb: any) => `- ${kb.title}: ${kb.content}`).join('\n')}`
+      ? `\nKnowledge Base:\n${knowledgeBase.map((kb: { title: string; content: string }) => `- ${kb.title}: ${kb.content}`).join('\n')}`
       : '';
 
     const systemPrompt = `You are a helpful, professional customer support agent. Your goal is to:
@@ -42,7 +42,7 @@ Respond in JSON format:
 
     const messages = [
       { role: "system", content: systemPrompt },
-      ...(conversationHistory || []).map((msg: any) => ({
+      ...(conversationHistory || []).map((msg: { role: string; content: string }) => ({
         role: msg.role,
         content: msg.content
       })),

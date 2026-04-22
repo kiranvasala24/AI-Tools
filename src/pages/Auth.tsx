@@ -57,10 +57,10 @@ export default function Auth() {
         if (error) throw error;
         toast({ title: "Account created successfully!" });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: "Error",
-        description: error.message,
+        description: (error as Error).message,
         variant: "destructive",
       });
     } finally {
